@@ -1,0 +1,18 @@
+version: '3'
+services:
+  database:
+    image: savicsorg/dhis2-postgresql9.5:1latest
+    restart: always
+    environment:
+      POSTGRES_USER: cesarie
+      POSTGRES_DB: dhis2
+      POSTGRES_PASSWORD: dhis
+      PG_DATA: /var/lib/postgresql/data/pgdata
+    ports:
+     - "5465:5432"
+    links:
+     - web
+  web:
+    image: savicsorg/dhis2-tomcat7jdk8:1latest
+    ports:
+      - "8082:8080"
